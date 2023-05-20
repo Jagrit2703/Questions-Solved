@@ -9,16 +9,15 @@ public:
     for(int i:nums2){
         nm2[i]++;
     }
-    for (int i : nums2) {
-            if (nm1.count(i) && nm1[i] > 0) {
-                vec.push_back(i);
-                nm1[i]--;
-                if (nm1[i] == 0) {
-                    nm1.erase(i);
+    for (auto pair:nm1){
+        int i=pair.first;
+        int freq=pair.second;
+        if (nm2.count(i) && nm2[i] > 0) {
+                for (int j = 0; j < min(freq, nm2[i]); j++) {
+                    vec.push_back(i);
                 }
             }
         }
-
         return vec;
     }
 };
