@@ -10,24 +10,20 @@
  */
 class Solution {
 public:
-    bool flag;
-    ListNode*Head;
-    void checkpalindrome(ListNode* Revhead){
-        if(Revhead==NULL){
-            return;
-        }
-         checkpalindrome(Revhead->next);
-         if(Revhead!=NULL){
-             if(Revhead->val!=Head->val){
-                 flag=false;
-             }
-             Head=Head->next;
-         }
+    bool reverseList(ListNode* head, ListNode* &x){
+        if(head != NULL) {
+            bool ans = reverseList(head->next, x);
+            if(head-> val == x->val) {
+                x = x->next;
+                return ans && true;
+            }else {
+                // no need to change x as final ans is false;
+                x = x->next;
+                return false;
+            }
+        }else return true;   
     }
-    bool isPalindrome(ListNode* head) {
-        flag=true;
-        Head=head;
-        checkpalindrome(head);
-        return flag;
+    bool isPalindrome(ListNode* head) {     
+        return reverseList(head, head);
     }
 };
