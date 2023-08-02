@@ -1,2 +1,2 @@
 # Questions-Solved
-Collection of LeetCode questions to ace the coding interview!
+Collection Of Data Structure And Algorithms Questions That I Have Solved
