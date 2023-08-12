@@ -22,12 +22,15 @@ public:
         if(root == NULL) return;
         if(root->val >= maxi){
             count++;
+            dfs(root->left, root->val);
+            dfs(root->right, root->val);
         }
 
-        maxi = max(root->val , maxi);
-    
+      
+    else{
             dfs(root->left, maxi);
             dfs(root->right, maxi);
+    }
         
     }
 };
