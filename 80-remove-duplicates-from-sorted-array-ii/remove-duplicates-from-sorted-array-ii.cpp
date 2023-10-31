@@ -9,11 +9,11 @@ public:
         nums.clear();
         for(auto i:mp){
             if(i.second>=2){
-                nums.emplace_back(i.first);
-                nums.emplace_back(i.first);
+                nums.push_back(i.first);
+                nums.push_back(i.first);
             }
             else{
-                nums.emplace_back(i.first);
+                nums.push_back(i.first);
             }
         }
         return nums.size();
