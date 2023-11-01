@@ -2,8 +2,8 @@ class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
         int listLength = 0;
-        ListNode* frontNode;
-        ListNode* endNode;
+        ListNode* frontNode=head;
+        ListNode* endNode=head;
         ListNode* currentNode = head;
         while (currentNode) {
             listLength++;
@@ -12,7 +12,7 @@ public:
             }
             currentNode = currentNode->next;
         }
-        endNode = head;
+        // endNode = head;
         for (int i = 1; i <= listLength - k; i++) {
             endNode = endNode->next;
         }
