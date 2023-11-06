@@ -1,1 +1,1 @@
-<h2>insert-into-a-binary-search-tree Notes</h2><hr>2nd approach with r
+<h2>insert-into-a-binary-search-tree Notes</h2><hr>2nd approach with recursion
