@@ -1,1 +1,1 @@
-<h2>contains-duplicate-ii Notes</h2><hr>another better approach using set
+<h2>contains-duplicate-ii Notes</h2><hr>using set
