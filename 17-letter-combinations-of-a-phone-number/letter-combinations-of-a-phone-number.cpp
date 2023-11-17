@@ -1,33 +1,34 @@
 class Solution {
 public:
-    void find(int index, string &digits, vector<string>&output, string &s, map<char,string>&mpp){
-        if(index == digits.size()){
-            output.push_back(s);
+    string subset;
+    vector<string>ans;
+     unordered_map<char,string>mp;
+    
+    void f(int i,string digits){
+        if(i>=digits.size()){
+            ans.push_back(subset);
             return;
         }
-        string t = mpp[digits[index]];
-        for(int i=0;i<t.size();i++){
-            s+=t[i];
-            find(index+1,digits,output,s,mpp);
-            s.pop_back();
+            char t=digits[i];
+            for(auto &it:mp[t]){
+                subset.push_back(it);
+                f(i+1,digits);
+                subset.pop_back();
+            }
         }
-    }
+        
+    
     vector<string> letterCombinations(string digits) {
-        vector<string>output;
-        string s;
-        if(digits.size()==0){
-            return output;
-        }
-        map<char,string>mpp;
-        mpp['2']="abc";
-        mpp['3'] = "def";
-        mpp['4'] = "ghi";
-        mpp['5'] = "jkl";
-        mpp['6'] = "mno";
-        mpp['7'] = "pqrs";
-        mpp['8'] = "tuv";
-        mpp['9'] = "wxyz";
-        find(0, digits, output, s, mpp);
-        return output;
+        if(digits=="")return {};
+         mp['2']="abc";
+        mp['3']="def";
+        mp['4']="ghi";
+        mp['5']="jkl";
+        mp['6']="mno";
+        mp['7']="pqrs";
+        mp['8']="tuv";
+        mp['9']="wxyz";
+        f(0,digits);
+        return ans;  
     }
 };
