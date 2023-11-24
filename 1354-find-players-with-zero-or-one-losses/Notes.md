@@ -1,1 +1,1 @@
-<h2>find-players-with-zero-or-one-losses Notes</h2><hr>Using maps, tho i want to try the g
+<h2>find-players-with-zero-or-one-losses Notes</h2><hr>Using maps
