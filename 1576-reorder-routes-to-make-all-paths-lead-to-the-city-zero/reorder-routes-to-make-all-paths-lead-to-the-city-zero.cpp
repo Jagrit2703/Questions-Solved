@@ -16,10 +16,9 @@ public:
     }
     int minReorder(int n, vector<vector<int>>& connections) {
         unordered_map<int, vector<pair<int,int>>> adjL;        
-        for(auto &it : connections){
-            int u = it[0];
-            int v = it[1];
-
+        for(int i=0;i<connections.size();i++){
+            int u = connections[i][0];
+            int v = connections[i][1];
             adjL[u].push_back({v,1});
             adjL[v].push_back({u,0});
         }
