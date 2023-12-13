@@ -1,37 +1,34 @@
 class Solution {
 public:
-    bool closeStrings(string word1, string word2) {
-        int n1=word1.size();
-        int n2=word2.size();
-        if(n1!=n2) return false;
-        map<int,int>mp1,mp2;
-        for(auto i:word1)
-        {
-            mp1[i]++;
-        }
-        for(auto i:word2 )
-        {
-            mp2[i]++;
-        }
+    bool closeStrings(string word1, string word2)
+    {
+      vector<int>arr1(26,0);
+      vector<int>arr2(26,0);
 
-        for(auto i:word1)
-        {
-            if(!mp2[i])return false;
-        }
+      if(word1.size()!=word2.size())
+      {
+          return 0;
+      }
 
-        vector<int>v1,v2;
-        for(auto i:mp1)
-        {
-            v1.push_back(i.second);
+      for(int i=0;i<word1.size();i++)
+      {
+         arr1[word1[i]-'a']++;
+         arr2[word2[i]-'a']++;
+      }
 
-        }
-        for(auto i:mp2)
-        {
-            v2.push_back(i.second);
-        }
-        sort(v1.begin(),v1.end());
-        sort(v2.begin(),v2.end());
-        if(v1==v2) return true;
-        else return false;
+      for(int i=0;i<26;i++)
+      {
+         if((arr1[i]==0 && arr2[i]!=0) ||(arr1[i]!=0 && arr2[i]==0))
+         {
+             return 0;
+         }
+      }
+      sort(arr1.begin(),arr1.end());
+      sort(arr2.begin(),arr2.end());
+
+      if(arr1!=arr2){
+          return 0;
+      }
+    return 1;
     }
 };
