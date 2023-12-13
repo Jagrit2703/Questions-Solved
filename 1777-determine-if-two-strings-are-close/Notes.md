@@ -1,1 +1,1 @@
-<h2>determine-if-two-strings-are-close Notes</h2><hr>m
+<h2>determine-if-two-strings-are-close Notes</h2><hr>more optimised method
