@@ -1,1 +1,1 @@
-<h2>h-index Notes</h2><hr>Binary 
+<h2>h-index Notes</h2><hr>Binary Search
