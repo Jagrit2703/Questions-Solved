@@ -1,0 +1,1 @@
+<h2>determine-if-two-events-have-conflict Notes</h2><hr>basic comparison
