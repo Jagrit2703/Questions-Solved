@@ -1,1 +1,1 @@
-<h2>non-overlapping-intervals Notes</h2><hr>iterative
+<h2>non-overlapping-intervals Notes</h2><hr>iterative greedy approach 
