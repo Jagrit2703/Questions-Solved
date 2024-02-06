@@ -1,1 +1,1 @@
-<h2>first-unique-character-in-a-string Notes</h2><hr>string 
+<h2>first-unique-character-in-a-string Notes</h2><hr>string index
