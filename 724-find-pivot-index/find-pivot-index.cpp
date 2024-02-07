@@ -10,12 +10,11 @@ public:
         }
 
         for(int i = 0; i<n; i++){
-            int curr = nums[i];
-            right -= curr;
+            right -= nums[i];
             if(left == right){
                 return i;
             }
-            left += curr;
+            left += nums[i];
         }
         return -1;    
     }
