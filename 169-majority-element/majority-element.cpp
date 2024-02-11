@@ -5,8 +5,10 @@ public:
         unordered_map<int,int> mp;
         for(auto n:nums){
             mp[n]++;
-            if(mp[n]>len/2){
-                return n;
+        }
+        for(auto it : mp){
+            if(it.second > len/2){
+                return it.first;
             }
         }
         return 0;
