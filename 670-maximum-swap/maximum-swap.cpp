@@ -1,25 +1,25 @@
 class Solution {
 public:
-    static int getmax(string s, int i){
-        int max=i;
-        for(int j=i;j<s.length();j++)
+int maximumSwap(int num) {
+        int temp = num, base = 1, high = 1, low = 1, lowBase = 1, highBase = 1, maxDigit = 0, maxBase = 1;
+        while(temp > 0)
         {
-            if(s[max]<=s[j])
-                max=j;
+            int current = temp % 10;
+            if(current<maxDigit)
+            {
+                low = maxDigit;
+                lowBase = maxBase;
+                high = current;
+                highBase = base;
+            }
+            if(current > maxDigit)
+            {
+                maxDigit = current;
+                maxBase = base;
+            }
+            base *= 10;
+            temp /= 10;
         }
-        return max;
-    }
-    int maximumSwap(int num) {
-        string s = to_string(num);
-        string s1 = s;
-        for(int i=0;i<s.length();i++)
-        {
-            int temp = getmax(s,i);
-            swap(s[i],s[temp]);
-            if(s1!=s)
-                break;
-        }
-        int number = stoi(s);
-        return number;
+        return num + (low-high)*(highBase-lowBase);
     }
 };
