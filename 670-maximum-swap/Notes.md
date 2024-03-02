@@ -1,1 +1,1 @@
-<h2>maximum-swap Notes</h2><hr>By converting int to string
+<h2>maximum-swap Notes</h2><hr>pure math
