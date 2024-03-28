@@ -1,23 +1,26 @@
 class Solution {
 public:
-    int coinChange(vector<int>& coins, int sum) {
-        int n= coins.size();
-        int t[n+1][sum+1];
-        
-        //Initialization
-        for(int i=0; i<sum+1; i++) t[0][i] = INT_MAX-1;
-        for(int j=1; j<n+1; j++) t[j][0] = 0;
-        
-        //Unbounded Knapsack
-        for(int i=1; i<n+1; i++){
-            for(int j=1; j<sum+1; j++){
-                if(coins[i-1] <= j){
-                    t[i][j] = min(1 + t[i][j-coins[i-1]], t[i-1][j]);
-                }else{
-                    t[i][j] = t[i-1][j];
-                }
-            }
+    int Memoization(vector<int>& dp, vector<int>& coins, int amount) {
+        if (amount == 0)
+            return 0;
+        if (amount < 0)
+            return INT_MAX;
+        if (dp[amount] != -1)
+            return dp[amount];
+        int mini = INT_MAX;
+        for (int i = 0; i < coins.size(); i++) {
+            int res = Memoization(dp, coins, amount - coins[i]);
+            if (res != INT_MAX)
+                mini = min(mini, res + 1);
         }
-        return (t[n][sum] == INT_MAX || t[n][sum] == INT_MAX-1) ? -1 : t[n][sum];
+        return dp[amount] = mini;
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> dp(amount + 1, -1);
+        int ans = Memoization(dp, coins, amount);
+        if (ans == INT_MAX)
+            return -1;
+        else
+            return ans;
     }
 };
