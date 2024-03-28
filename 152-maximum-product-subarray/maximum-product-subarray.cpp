@@ -8,9 +8,7 @@ public:
         {
             if(nums[i]<0)
             {
-                int temp=maxi;
-                maxi=mini;
-                mini=temp;
+                swap(maxi,mini);
             }
             maxi=max(nums[i],nums[i]*maxi);
             mini=min(nums[i],nums[i]*mini);
