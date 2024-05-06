@@ -1,17 +1,16 @@
 class Solution {
 public:
     bool checkPerfectNumber(int num) {
-        if(num == 1 || num == 0){
-            return false;
-        }
-        int i = 2;
-        int res = 1;
-        for(;i<sqrt(num);i++){
+        int i = 1;
+        int res = 0;
+        for(;i<=num/2;i++){
             if(num%i == 0){
-                res+=i+num/i;
+                res+=i;
             }
         }
-        if((int(sqrt(num))>=i) && (num%i==0))res+=i;
-        return res == num;
+        if(res==num){
+            return true;
+        }
+        return false;
     }
 };
