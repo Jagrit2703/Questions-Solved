@@ -8,9 +8,6 @@ public:
                 res+=i;
             }
         }
-        if(res==num){
-            return true;
-        }
-        return false;
+        return res == num;
     }
 };
