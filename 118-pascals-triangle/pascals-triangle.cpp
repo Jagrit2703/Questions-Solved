@@ -1,18 +1,20 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        if (numRows==0){
-            return {};
-        }
-        if(numRows==1) return {{1}};
-        vector<vector<int>>result;
-        for(int i=0;i<numRows;i++){
-            vector<int>row(i+1,1);
-            for(int j=1;j<i;j++){
-                row[j]=result[i-1][j-1]+ result[i-1][j];
+        vector<vector<int>> result;
+        vector<int> prevRow;
+        
+        for (int i = 0; i < numRows; i++) {
+            vector<int> currentRow(i + 1, 1);
+            
+            for (int j = 1; j < i; j++) {
+                currentRow[j] = prevRow[j - 1] + prevRow[j];
             }
-            result.push_back(row);
+            
+            result.push_back(currentRow);
+            prevRow = currentRow;
         }
+        
         return result;
     }
 };
