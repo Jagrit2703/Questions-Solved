@@ -1,33 +1,16 @@
 class Solution {
 public:
-    bool searchMatrix(vector<vector<int>> &m, int t) {
-		if (!m.size() || !m[0].size()) return false;
-		int row, l = 0, r = m.size() - 1, mid;
-        while (l < r) {
-            mid = (l + r) / 2;
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int rows = matrix.size(),
+        cols = matrix[0].size();
+        int row = 0;
+        int col = cols-1;
 
-            if (m[mid].back() < t) l = mid + 1;
-            // moving r down if needed
-            else if (m[mid][0] > t) r = mid - 1;
-            // we found our row!
-            else {
-                l = mid;
-                break;
-            };
-        }
-        // storing the value of the new found row
-        row = l;
-        // resetting l and r to run a binary search on the rows
-        l = 0;
-        r = m[0].size() - 1;
-        while (l <= r) {
-            mid = (l + r) / 2;
-            // moving l up if needed
-            if (m[row][mid] < t) l = mid + 1;
-            // moving r down if needed
-            else if (m[row][mid] > t) r = mid - 1;
-            // we found our value!
-            else return true;
+        while(row<rows && col>-1){
+            int curr = matrix[row][col];
+            if(curr == target)return true;
+            if(target>curr)row++;
+            else col--;
         }
         return false;
     }
