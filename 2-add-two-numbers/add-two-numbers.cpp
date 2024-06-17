@@ -16,17 +16,19 @@ public:
         ListNode* temp = dummy;
         while(l1!=NULL || l2!=NULL || carry!=0){
             int sum = 0;
+            int digit1 = 0, digit2 = 0;
             if(l1!=NULL){
-                sum+=l1->val;
+                digit1+=l1->val;
                 l1=l1->next;
             }
             if(l2!=NULL){
-                sum+=l2->val;
+                digit2+=l2->val;
                 l2=l2->next;
             }
-            sum+=carry;
-            carry=sum/10;
-            ListNode* newnode = new ListNode(sum%10);
+            sum+=digit1+digit2+carry;
+            int digit = sum%10;
+            carry = sum/10;
+            ListNode* newnode = new ListNode(digit);
             temp->next = newnode;
             temp=temp->next;
         }
