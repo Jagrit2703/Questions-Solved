@@ -1,32 +1,21 @@
 class Solution {
 public:
-
-    bool helper(string &s, int i, int j,vector<vector<int>>& dp){
-        if(i>=j)return 1;  
-        
-        if(dp[i][j]!=-1){
-            return dp[i][j];
+    string ans = "";
+    void expand(string &s, int left, int right){
+        while(left>=0 && right<s.size()){
+            if(s[left]!=s[right])break;
+            left--;
+            right++;
         }
-        if(s[i]==s[j]) return dp[i][j] = helper(s,i+1,j-1,dp);
-
-        return dp[i][j]=0;
+        if(ans.size()<right-left){
+            ans = s.substr(left+1,right-left-1);
+        }
     }
     string longestPalindrome(string s) {
-        int n = s.size();
-        if(n<=1) return s;
-        vector<vector<int>> dp(n, vector<int>(n, -1));
-        int sp = 0; 
-        int maxlen = 1;
-        for(int i = 0; i<n; i++){
-            for(int j = i; j<n; j++){
-                if(helper(s,i,j,dp)){
-                    if(j-i+1>maxlen){
-                        maxlen = j-i+1;
-                        sp = i;
-                    }
-                }
-            }
+        for(int i = 0; i<s.size(); i++){
+            expand(s,i,i);
+            expand(s,i,i+1);
         }
-        return s.substr(sp, maxlen);
+        return ans;
     }
 };
