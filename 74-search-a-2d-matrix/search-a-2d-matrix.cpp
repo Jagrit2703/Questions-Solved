@@ -15,7 +15,6 @@ public:
         DFS(matrix, target, i - 1, j, visited, ans);
         DFS(matrix, target, i, j + 1, visited, ans);
         DFS(matrix, target, i, j - 1, visited, ans);
-        visited[i][j] = false;
     }
 
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
