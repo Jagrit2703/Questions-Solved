@@ -1,16 +1,19 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        priority_queue<int> maxHeap;
-
-        for(int i=0; i<nums.size(); i++)
-        {
-            maxHeap.push(nums[i]);
+         priority_queue<int>mh;
+        for(int i : nums){
+            mh.push(i);
         }
-
-        int x = maxHeap.top();
-        maxHeap.pop();
-        int y = maxHeap.top();
-        return (x-1)*(y-1);
+        int prod = 1;
+        while(!mh.empty()){
+            int num1 = mh.top();
+            mh.pop();
+            int num2 = mh.top();
+            mh.pop();
+            prod = (num1-1)*(num2-1);
+            break;
+        }
+        return prod;
     }
 };
