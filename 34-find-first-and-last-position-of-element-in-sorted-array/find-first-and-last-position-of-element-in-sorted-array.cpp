@@ -1,32 +1,20 @@
 class Solution {
 public:
-    int binarySearch(vector<int>& nums, int target, bool isSearchingLeft) {
-        int left = 0;
-        int right = nums.size() - 1;
-        int idx = -1;
-        
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            
-            if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] < target) {
-                left = mid + 1;
-            } else {
-                idx = mid;
-                if (isSearchingLeft) {
-                    right = mid - 1;
-                } else {
-                    left = mid + 1;
-                }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int startingPosition = -1, endingPosition = -1;
+        int n = nums.size();
+        for(int i=0; i<n; i++){
+            if(nums[i] == target){
+                startingPosition = i;
+                break;
             }
         }
-        
-        return idx;
-    }    
-    vector<int> searchRange(vector<int>& nums, int target) {
-        int left = binarySearch(nums,target,true);
-        int right = binarySearch(nums,target,false);
-        return {left,right};
+        for(int i=n-1; i>=0; i--){
+            if(nums[i] == target){
+                endingPosition = i;
+                break;
+            }
+        }
+        return {startingPosition, endingPosition};
     }
 };
