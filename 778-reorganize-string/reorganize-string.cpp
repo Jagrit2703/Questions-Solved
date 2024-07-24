@@ -1,19 +1,15 @@
 class Solution {
 public:
     string reorganizeString(string s) {
-        vector<int> count(26, 0);
+        unordered_map<char,int>count;
         int n = s.size();
         priority_queue<pair<int, char>> pq;
 
-        for (char& ch : s) {
-            count[ch - 'a']++;
-            if (count[ch - 'a'] > (n+1) / 2)
-                return "";
+        for (char& ch : s) { 
+            count[ch]++;
         }
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-            if (count[ch - 'a'] > 0) {
-                pq.push({count[ch - 'a'], ch});
-            }
+        for (auto i : count) {
+            pq.push(make_pair(i.second,i.first));
         }
         string result = "";
         while (pq.size() >= 2) {
@@ -33,7 +29,10 @@ public:
             }
         }
         if (!pq.empty()) {
-            result.push_back(pq.top().second);
+            if(pq.top().first > 1)
+                return "";
+            else
+                result+=pq.top().second;
         }
         return result;
     }
