@@ -1,50 +1,38 @@
 class Solution {
 public:
-
-bool safe(vector<string>&board,int row,int col){
-int r=row, c=col;
-while(r>=0&&c>=0){
-    if(board[r][c]=='Q') return false;
-    r--;
-    c--;
-}
-c=col;
-while(c>=0){
-    if(board[row][c]=='Q') return false;
-    c--;
-}
-int n=board.size();
-c=col;
-r=row;
-while(r<n && c >=0){
-if(board[r][c]=='Q') return false;
-r++;
-c--;
-}
-return true;
-}
-
-void  solve(vector<string>&board,int col,int n,vector<vector<string>>&ans) {
-if(col==n) 
-{ 
-       ans.push_back(board);
-    return;
-}
-for(int row=0;row<n;row++){
-    if(safe(board,row,col)){
-     board[row][col]='Q';
-    solve(board,col+1,n,ans);
-     board[row][col]='.';
+    vector<vector<string>>res;
+    unordered_set<int>diag;
+    unordered_set<int>antidiag;
+    unordered_set<int>cols;
+    int N;
+    void search(vector<string>&board, int row){
+        if(row>=N){
+            res.push_back(board);
+            return;
         }
-}
-}
- vector<vector<string>> solveNQueens(int n) {
- vector<vector<string>>ans;
- vector<string>board;
-string s(n,'.');
-for(int i=0;i<n;i++) board.push_back(s);
-solve(board,0,n,ans);
-return ans;
+        for(int col = 0; col<N; col++){
+            int diagC = row+col;
+            int antiDiagC = row-col;
+            if(cols.find(col)!=cols.end() || diag.find(diagC)!=diag.end() || antidiag.find(antiDiagC)!=antidiag.end()){
+                continue;
+            }
+            cols.insert(col);
+            diag.insert(diagC);
+            antidiag.insert(antiDiagC);
+            board[row][col] = 'Q';
 
+            search(board,row+1);
+
+            cols.erase(col);
+            diag.erase(diagC);
+            antidiag.erase(antiDiagC);
+            board[row][col] = '.';
+        }
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        N = n;
+        vector<string>board(n,string(n,'.'));
+        search(board,0);
+        return res;
     }
 };
