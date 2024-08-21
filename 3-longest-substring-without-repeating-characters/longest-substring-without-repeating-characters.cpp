@@ -8,8 +8,9 @@ public:
       int len = 0;
       while (right < n) {
         if (mpp[s[right]] != -1)
-          left = max(mpp[s[right]] + 1, left);
-
+          if(mpp[s[right]]>=left){
+            left = mpp[s[right]]+1;
+          }
         mpp[s[right]] = right;
 
         len = max(len, right - left + 1);
