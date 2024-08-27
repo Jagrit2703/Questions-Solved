@@ -5,7 +5,7 @@ public:
         int n=word.size();
         int maxi=INT_MIN;
         int ans=0;
-        for(int i=0;i<=m-n;i++){
+        for(int i=0;i<m;i++){
             if(sequence.substr(i,n)==word){
                 ans++;
                 i+=(n-1);
