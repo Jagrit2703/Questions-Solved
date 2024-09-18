@@ -2,13 +2,13 @@ class Solution {
 public:
     vector<vector<int>>ans;
     void solve(vector<int>& candidates, int target,int ind,int total,vector<int>&temp){
-        if(total==target){
+        if(target==0){
             ans.push_back(temp);
             return;
         }
-        if(total>target || ind>=candidates.size()) return;
+        if(target<0 || ind>=candidates.size()) return;
         temp.push_back(candidates[ind]);
-        solve(candidates,target,ind,total+candidates[ind],temp);
+        solve(candidates,target-candidates[ind],ind,total,temp);
         temp.pop_back();
         solve(candidates,target,ind+1,total,temp);
     }
